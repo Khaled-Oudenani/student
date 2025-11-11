@@ -5,7 +5,7 @@ const StudentCard = ({ student }) => {
   const navigate = useNavigate();
 
   const handleShowDetails = () => {
-    navigate(`/student/${student.id}`);
+    navigate(`/student/${student._id}`);
   };
 
   return (

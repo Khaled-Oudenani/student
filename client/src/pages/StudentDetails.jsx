@@ -298,7 +298,7 @@ const StudentDetails = () => {
   const { id } = useParams();
 
   // تأكد من مقارنة id كنص لتفادي اختلاف الأنواع
-  const student = students.find((s) => String(s.id) === id);
+  const student = students.find((s) => String(s._id) === id);
 
   // 🔹 إذا لم يُعثر على الطالب بعد (البيانات لم تصل)
   if (!student) {
