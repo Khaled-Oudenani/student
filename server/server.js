@@ -23,7 +23,6 @@ app.use("/api/students", studentRoutes);
 app.use("/api/admin", adminRoutes);
 
 const PORT = process.env.PORT || 3000;
-module.exports = app;
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
