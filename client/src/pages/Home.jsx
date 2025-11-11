@@ -27,29 +27,29 @@ const Home = () => {
   });
 
   return (
-    <div className="mx-auto px-4 py-8 font-arabic" dir="rtl">
+    <div className="mx-auto p-4 font-arabic max-w-5xl" dir="rtl">
       {/* العنوان الرئيسي */}
       <div className="text-center mb-8">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-2">
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
           دليل طلبة الدكتوراه
         </h1>
-        <div className="w-24 h-1 bg-blue-500 mx-auto mt-4"></div>
+        <div className="w-24 h-1 bg-blue-500 mx-auto mt-2"></div>
       </div>
 
       {/* قسم البحث والتصفية */}
-      <div className="flex flex-wrap gap-4 mb-6 justify-center">
+      <div className="flex flex-wrap gap-4 mb-2 justify-center">
         <input
           type="text"
           placeholder="ابحث عن طالب (الاسم أو اللقب)..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-1 min-w-[250px] px-4 py-3 text-base border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
+          className="flex-1 min-w-[250px] px-4 py-2 text-base border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
         />
 
         <select
           value={selectedSpecialty}
           onChange={(e) => setSelectedSpecialty(e.target.value)}
-          className="px-4 py-3 text-base border-2 border-gray-300 rounded-lg bg-white cursor-pointer focus:outline-none focus:border-blue-500 min-w-[180px] transition-colors"
+          className="px-4 py-2 text-base border-2 border-gray-300 rounded-lg bg-white cursor-pointer focus:outline-none focus:border-blue-500 min-w-[180px] transition-colors"
         >
           <option value="">جميع التخصصات</option>
           <option>تاريخ الحضارات القديمة</option>
@@ -69,7 +69,7 @@ const Home = () => {
         <select
           value={selectedLabMembership}
           onChange={(e) => setSelectedLabMembership(e.target.value)}
-          className="px-4 py-3 text-base border-2 border-gray-300 rounded-lg bg-white cursor-pointer focus:outline-none focus:border-blue-500 min-w-[180px] transition-colors"
+          className="px-4 py-2 text-base border-2 border-gray-300 rounded-lg bg-white cursor-pointer focus:outline-none focus:border-blue-500 min-w-[180px] transition-colors"
         >
           <option value="">الانتماء للمخبر</option>
           <option value="نعم">نعم</option>
@@ -78,9 +78,9 @@ const Home = () => {
       </div>
 
       {/* عدد النتائج */}
-      <div className="text-center mb-6">
+      <div className="text-center mb-2">
         <p className="text-lg text-gray-600">
-          عدد النتائج:{" "}
+          عدد الطلبة:{" "}
           <span className="font-bold text-blue-600">
             {filteredStudents.length}
           </span>
@@ -91,7 +91,7 @@ const Home = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {filteredStudents.length > 0 ? (
           filteredStudents.map((student) => (
-            <StudentCard key={student.id} student={student} />
+            <StudentCard key={student._id} student={student} />
           ))
         ) : (
           <div className="col-span-full text-center py-12">

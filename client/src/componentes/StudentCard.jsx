@@ -31,10 +31,10 @@ const StudentCard = ({ student }) => {
         <p className="text-sm text-gray-600 mb-2">
           <strong className="text-gray-700">التخصص:</strong> {student.specialty}
         </p>
-        <p className="text-sm text-gray-600 mb-2">
+        {/* <p className="text-sm text-gray-600 mb-2">
           <strong className="text-gray-700">سنة الأطروحة:</strong>{" "}
           {student.thesisYear}
-        </p>
+        </p> */}
       </div>
 
       {/* حالة الانتماء للمخبر */}

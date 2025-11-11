@@ -5,7 +5,7 @@ import logo from "../assets/univ-logo.jpg";
 const Navbar = () => {
   return (
     <div
-      className="flex flex-row justify-between text-center items-center py-4 px-8 bg-blue-400 text-white border-b-4 border-blue-800"
+      className="flex flex-row justify-between text-center items-center py-2 px-8 bg-blue-400 text-white border-b-4 border-blue-800"
       dir="ltr"
     >
       <div className="flex flex-row justify-center items-center gap-3">
@@ -20,7 +20,7 @@ const Navbar = () => {
         </Link>
       </ul>
       <Link to="/admin">
-        <button className="px-4 py-2 rounded-full border-2 border-amber-500 bg-amber-100 text-red-400 cursor-pointer font-semibold hover:bg-amber-200 hover:text-red-500 hover:border-amber-600 transition-all duration-300">
+        <button className="px-4 py-1 rounded-full border-2 border-amber-500 bg-amber-100 text-red-400 cursor-pointer font-semibold hover:bg-amber-200 hover:text-red-500 hover:border-amber-600 transition-all duration-300">
           admin
         </button>
       </Link>
