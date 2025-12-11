@@ -14,10 +14,7 @@ import { Navigate } from "react-router-dom";
 
 const App = () => {
   return (
-    <div
-      className="flex flex-col justify-between min-h-screen font-arabic"
-      dir="rtl"
-    >
+    <div className="flex flex-col min-h-screen font-amiri " dir="rtl">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -37,6 +34,7 @@ const App = () => {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="manage" element={<ManageStudents />} />
           <Route path="add" element={<AddStudent />} />
+          <Route path="update-student/:id" element={<AddStudent />} />
           <Route index element={<Navigate to="dashboard" />} />
         </Route>
       </Routes>

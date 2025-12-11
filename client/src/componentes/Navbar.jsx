@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className="bg-blue-400 text-white border-b-4 border-blue-800"
+      className="bg-blue-600 text-white border-b-4 border-blue-800 shadow-md"
       dir="ltr"
     >
       <div className="flex flex-row justify-between items-center py-2 px-4 md:px-8">
@@ -31,11 +31,11 @@ const Navbar = () => {
         </ul>
 
         {/* Desktop Admin Button */}
-        <Link to="/admin" className="hidden md:block">
+        {/* <Link to="/admin" className="hidden md:block">
           <button className="px-4 py-1 rounded-full border-2 border-amber-500 bg-amber-100 text-red-400 cursor-pointer font-semibold hover:bg-amber-200 hover:text-red-500 hover:border-amber-600 transition-all duration-300">
             admin
           </button>
-        </Link>
+        </Link> */}
 
         {/* Mobile Menu Button */}
         <button
@@ -86,11 +86,11 @@ const Navbar = () => {
                 الصفحة الرئيسية
               </li>
             </Link>
-            <Link to="/admin" onClick={toggleMenu} className="px-4 py-3">
+            {/* <Link to="/admin" onClick={toggleMenu} className="px-4 py-3">
               <button className="w-full px-4 py-2 rounded-full border-2 border-amber-500 bg-amber-100 text-red-400 cursor-pointer font-semibold hover:bg-amber-200 hover:text-red-500 hover:border-amber-600 transition-all duration-300">
                 admin
               </button>
-            </Link>
+            </Link> */}
           </ul>
         </div>
       )}
