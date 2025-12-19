@@ -94,7 +94,7 @@ const Home1 = () => {
     <div className="relative w-screen h-[calc(100vh-3rem)]">
       {/* الصورة */}
       <img src={backgroundImage} alt="background" className="w-screen h-full" />
-      <div className="absolute inset-0 bg-black/50"></div>
+      {/* <div className="absolute inset-0 bg-black/50"></div> */}
       <div className="absolute inset-0 flex justify-center items-start">
         <div className="z-10 flex flex-col items-center gap-4 p-8 bg-gray-900/70 bg-opacity-70 rounded-lg shadow-lg">
           {/* <h1 className="text-2xl md:text-4xl font-bold text-white text-center">
