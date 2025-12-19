@@ -422,7 +422,7 @@ const StudentDetails = () => {
               <img
                 src={student.publicationCertificate}
                 alt="شهادة النشر"
-                className="w-full max-w-md mx-auto rounded-lg shadow-md"
+                className="w-full max-w-md mx-auto rounded-lg shadow-md hover:scale-105 transition-transform duration-300 ease-in-out"
               />
             )}
           </div>
@@ -455,7 +455,7 @@ const StudentDetails = () => {
                       key={i}
                       src={file}
                       alt={`ملتقى وطني ${i + 1}`}
-                      className="w-full h-48 object-cover rounded-lg shadow"
+                      className="w-full h-48 object-cover rounded-lg shadow hover:scale-105 transition-transform duration-300 ease-in-out"
                     />
                   )
                 )}
@@ -483,7 +483,7 @@ const StudentDetails = () => {
                       key={i}
                       src={file}
                       alt={`ملتقى دولي ${i + 1}`}
-                      className="w-full h-48 object-cover rounded-lg shadow"
+                      className="w-full h-48 object-cover rounded-lg shadow hover:scale-105 transition-transform duration-300 ease-in-out"
                     />
                   )
                 )}

@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./componentes/Navbar.jsx";
 import Footer from "./componentes/Footer.jsx";
+import Home1 from "./pages/Home1.jsx";
 import Home from "./pages/Home.jsx";
 import StudentDetails from "./pages/StudentDetails.jsx";
 import Login from "./pages/admin/Login";
@@ -14,10 +15,11 @@ import { Navigate } from "react-router-dom";
 
 const App = () => {
   return (
-    <div className="flex flex-col min-h-screen font-amiri " dir="rtl">
+    <div className="flex flex-col min-h-screen font-amiri max-w-full" dir="rtl">
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home1 />} />
+        <Route path="/student" element={<Home />} />
         <Route path="/student/:id" element={<StudentDetails />} />
         <Route
           path="/admin/login"
