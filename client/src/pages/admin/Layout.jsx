@@ -93,11 +93,25 @@ const Layout = () => {
             👨‍🎓 إدارة الطلبة
           </Link>
           <Link
+            to="/admin/manage-teachers"
+            onClick={() => setIsOpen(false)}
+            className="hover:bg-gray-700 p-2 rounded"
+          >
+            👩‍🏫 إدارة الأساتذة
+          </Link>
+          <Link
             to="/admin/add"
             onClick={() => setIsOpen(false)}
             className="hover:bg-gray-700 p-2 rounded"
           >
             ➕ إضافة طالب
+          </Link>
+          <Link
+            to="/admin/add-teacher"
+            onClick={() => setIsOpen(false)}
+            className="hover:bg-gray-700 p-2 rounded"
+          >
+            ➕ إضافة أستاذ
           </Link>
         </nav>
 

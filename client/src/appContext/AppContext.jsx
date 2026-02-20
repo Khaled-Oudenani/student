@@ -5,11 +5,12 @@ export const AppContext = createContext(null);
 
 export const AppProvider = ({ children }) => {
   const [students, setStudents] = useState([]);
+  const [teachers, setTeachers] = useState([]);
 
   const fetchStudents = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/students`
+        `${import.meta.env.VITE_API_URL}/api/students`,
       );
       setStudents(response.data);
     } catch (error) {
@@ -17,9 +18,22 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  const fetchTeachers = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/teachers`,
+      );
+      setTeachers(response.data);
+    } catch (error) {
+      console.error("Error fetching teachers:", error);
+    }
+  };
+
   fetchStudents();
+  fetchTeachers();
   const value = {
     students,
+    teachers,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

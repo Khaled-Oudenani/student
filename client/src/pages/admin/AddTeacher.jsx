@@ -4,7 +4,7 @@ import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useParams, useNavigate } from "react-router-dom";
 
-const AddStudent = () => {
+const AddTeacher = () => {
   const token = localStorage.getItem("adminToken");
   const { id } = useParams();
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const AddStudent = () => {
     researchTeam: "",
     journals: [],
     bookPublications: [],
-    publications: [], // [{title, link, category}]
+    publications: [],
     publicationCertificate: "",
     interventions: {
       nationalConference: [],
@@ -32,7 +32,6 @@ const AddStudent = () => {
     profileImage: "",
   });
 
-  // مؤقتات لإدخال عناصر القوائم
   const [journalInput, setJournalInput] = useState("");
   const [bookInput, setBookInput] = useState("");
   const [pubInput, setPubInput] = useState({
@@ -41,13 +40,12 @@ const AddStudent = () => {
     category: "",
   });
 
-  // upload endpoint uses VITE_API_URL
   const uploadImage = async (file) => {
     try {
       const fd = new FormData();
       fd.append("image", file);
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/students/upload`,
+        `${import.meta.env.VITE_API_URL}/api/teachers/upload`,
         fd,
         {
           headers: {
@@ -56,8 +54,7 @@ const AddStudent = () => {
           },
         }
       );
-      // تأكد من شكل الاستجابة في backend — أنا افترضت res.data.imageUrl
-      return res.data.imageUrl || res.data.path || "";
+      return res.data.imageUrl || res.data.path || res.data.file?.path || "";
     } catch (err) {
       console.error("Upload error:", err);
       alert("حدث خطأ أثناء رفع الصورة");
@@ -65,18 +62,14 @@ const AddStudent = () => {
     }
   };
 
-  // جلب بيانات الطالب عند وجود id (وتهيئة النموذج)
   useEffect(() => {
     if (!id) return;
-
-    const fetchStudent = async () => {
+    const fetchTeacher = async () => {
       try {
         const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/students/${id}`,
+          `${import.meta.env.VITE_API_URL}/api/teachers/${id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
-
-        // تأكد أن الحقول موجودة بشكل مناسب
         setFormData((p) => ({
           ...p,
           registrationNumber: data.registrationNumber || "",
@@ -107,16 +100,14 @@ const AddStudent = () => {
           profileImage: data.profileImage || "",
         }));
       } catch (err) {
-        console.error("Fetch student error:", err);
-        alert("حدث خطأ أثناء جلب بيانات الطالب");
+        console.error("Fetch teacher error:", err);
+        alert("حدث خطأ أثناء جلب بيانات الأستاذ");
       }
     };
-
-    fetchStudent();
+    fetchTeacher();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  // تغييرات الحقول العادية
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((p) => ({
@@ -125,7 +116,6 @@ const AddStudent = () => {
     }));
   };
 
-  // إدارة journals
   const addJournal = () => {
     if (!journalInput.trim()) return;
     setFormData((p) => ({
@@ -140,7 +130,6 @@ const AddStudent = () => {
       journals: p.journals.filter((_, i) => i !== idx),
     }));
 
-  // إدارة bookPublications
   const addBook = () => {
     if (!bookInput.trim()) return;
     setFormData((p) => ({
@@ -155,7 +144,6 @@ const AddStudent = () => {
       bookPublications: p.bookPublications.filter((_, i) => i !== idx),
     }));
 
-  // إدارة publications (objects)
   const addPublication = () => {
     const { title, link, category } = pubInput;
     if (!title.trim() || !link.trim() || !category.trim())
@@ -172,7 +160,6 @@ const AddStudent = () => {
       publications: p.publications.filter((_, i) => i !== idx),
     }));
 
-  // رفع صورة شخصية
   const handleProfileImage = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -180,7 +167,6 @@ const AddStudent = () => {
     if (url) setFormData((p) => ({ ...p, profileImage: url }));
   };
 
-  // رفع شهادة النشر
   const handlePublicationCertificate = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -188,7 +174,6 @@ const AddStudent = () => {
     if (url) setFormData((p) => ({ ...p, publicationCertificate: url }));
   };
 
-  // رفع صورة وإضافتها إلى نوع تدخل معين
   const handleInterventionUpload = async (e, field) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -214,15 +199,12 @@ const AddStudent = () => {
     }));
   };
 
-  // إرسال الفورم النهائي
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!token) return alert("غير مسموح: الرجاء تسجيل الدخول كأدمن");
 
     const payload = {
       ...formData,
-      // إرسال birthDate كـ ISO string أو null حسب الـ backend
       birthDate: formData.birthDate
         ? new Date(formData.birthDate).toISOString()
         : null,
@@ -232,35 +214,35 @@ const AddStudent = () => {
 
     try {
       if (id) {
-        // تحديث
         await axios.put(
-          `${import.meta.env.VITE_API_URL}/api/students/${id}`,
+          `${import.meta.env.VITE_API_URL}/api/teachers/${id}`,
           payload,
-          { headers: { Authorization: `Bearer ${token}` } }
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
         );
-        alert("✅ تم تحديث بيانات الطالب بنجاح");
+        alert("✅ تم تحديث بيانات الأستاذ بنجاح");
       } else {
-        // إضافة جديد
         await axios.post(
-          `${import.meta.env.VITE_API_URL}/api/students`,
+          `${import.meta.env.VITE_API_URL}/api/teachers`,
           payload,
-          { headers: { Authorization: `Bearer ${token}` } }
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
         );
-        alert("✅ تم إضافة الطالب بنجاح");
+        alert("✅ تم إضافة الأستاذ بنجاح");
       }
-
-      // بعد الحفظ نعيد تهيئة أو نرجع لقائمة الطلبة
-      navigate("/admin/add");
+      navigate("/admin/manage-teachers");
     } catch (err) {
       console.error("Save error:", err.response?.data || err);
-      alert("❌ حدث خطأ أثناء حفظ الطالب");
+      alert("❌ حدث خطأ أثناء حفظ الأستاذ");
     }
   };
 
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-4">
-        {id ? "تعديل بيانات الطالب" : "إضافة طالب جديد"}
+        {id ? "تعديل بيانات الأستاذ" : "إضافة أستاذ جديد"}
       </h2>
 
       <form
@@ -447,7 +429,7 @@ const AddStudent = () => {
           </div>
         </div>
 
-        {/* publications (objects) */}
+        {/* publications */}
         <div className="space-y-2">
           <label className="font-medium">المنشورات (publications)</label>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
@@ -549,10 +531,9 @@ const AddStudent = () => {
           )}
         </div>
 
-        {/* interventions uploads */}
+        {/* interventions */}
         <div className="space-y-2">
           <label className="font-medium">المداخلات (صور لكل نوع)</label>
-
           {[
             { key: "nationalConference", label: "ملتقيات وطنية" },
             { key: "internationalConference", label: "ملتقيات دولية" },
@@ -568,7 +549,6 @@ const AddStudent = () => {
                   onChange={(e) => handleInterventionUpload(e, item.key)}
                 />
               </div>
-
               <div className="flex gap-2 mt-2 flex-wrap">
                 {formData.interventions[item.key].map((url, i) => (
                   <div key={i} className="relative">
@@ -592,7 +572,7 @@ const AddStudent = () => {
             type="submit"
             className="bg-green-600 text-white px-6 py-2 rounded"
           >
-            {id ? "تحديث الطالب" : "حفظ الطالب"}
+            {id ? "تحديث الأستاذ" : "حفظ الأستاذ"}
           </button>
         </div>
       </form>
@@ -600,4 +580,4 @@ const AddStudent = () => {
   );
 };
 
-export default AddStudent;
+export default AddTeacher;

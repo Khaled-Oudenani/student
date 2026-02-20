@@ -19,8 +19,10 @@ mongoose
 // Routes
 import studentRoutes from "./routes/studentRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
+import teacherRoutes from "./routes/teacherRoutes.js";
 app.use("/api/students", studentRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/teachers", teacherRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.get("/", (req, res) => {
