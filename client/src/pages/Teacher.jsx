@@ -39,7 +39,7 @@ const Teacher = () => {
         <div className="bg-white rounded-2xl shadow-lg p-4 mb-5 border border-gray-100">
           <div className="flex flex-wrap gap-2 justify-center">
             {/* حقل البحث */}
-            <div className="flex-1 min-w-[280px] relative">
+            <div className="flex-1 w-full min-w-[280px] relative">
               <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400">
                 <svg
                   className="w-5 h-5"
@@ -62,43 +62,6 @@ const Teacher = () => {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pr-12 pl-4 py-2 text-base border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 hover:border-gray-300"
               />
-            </div>
-
-            {/* قائمة التخصصات */}
-            <div className="relative min-w-[220px]">
-              <select
-                value={selectedSpecialty}
-                onChange={(e) => setSelectedSpecialty(e.target.value)}
-                className="w-full px-4 py-2 text-base border-2 border-gray-200 rounded-xl bg-white cursor-pointer focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 hover:border-gray-300 appearance-none"
-              >
-                <option value="">جميع التخصصات</option>
-                <option>تاريخ الحضارات القديمة</option>
-                <option>تاريخ و حضارة المشرق الاسلامي</option>
-                <option>تاريخ المغرب الحديث و المعاصر</option>
-                <option>سمعي بصري</option>
-                <option>الاتصال الجماهيري و الوسائط الجديدة</option>
-                <option>اتصال و علاقات عامة</option>
-                <option>التاريخ الوسيط</option>
-                <option>تاريخ حديث و معاصر</option>
-                <option>الاتصال الجماهيري</option>
-                <option>تاريخ الجزائر المعاصر</option>
-                <option>اعلام جديد و قضايا المجتمع</option>
-              </select>
-              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </div>
             </div>
           </div>
 
