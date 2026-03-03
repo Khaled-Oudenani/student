@@ -100,7 +100,7 @@ const teacherSchema = new mongoose.Schema({
     required: true,
   },
 
-  journals: [{ type: String }],
+  // journals: [{ type: String }],
   bookPublications: [{ type: String }],
 
   publications: [publicationSchema],
@@ -108,10 +108,10 @@ const teacherSchema = new mongoose.Schema({
   interventions: interventionSchema,
 
   // مخابر البحث و المجلات العلمية (مصفوفة من الأسماء والصور)
-  researchLabsAndJournals: [researchLabSchema],
+  // researchLabsAndJournals: [researchLabSchema],
 
   // النشاطات و التظاهرات العلمية (مصفوفة من الأسماء والصور)
-  scientificActivities: [scientificActivitySchema],
+  // scientificActivities: [scientificActivitySchema],
 
   profileImage: { type: String },
 });

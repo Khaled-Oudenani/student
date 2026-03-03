@@ -165,7 +165,7 @@ const TeacherDetails = () => {
             ))}
           </div>
 
-          {teacher.journals?.length > 0 && (
+          {/* {teacher.journals?.length > 0 && (
             <div className="mt-6">
               <h3 className="font-bold text-gray-700 mb-3">المجلات:</h3>
               <div className="space-y-2">
@@ -182,7 +182,7 @@ const TeacherDetails = () => {
                 ))}
               </div>
             </div>
-          )}
+          )} */}
 
           {teacher.bookPublications?.length > 0 && (
             <div className="mt-6">

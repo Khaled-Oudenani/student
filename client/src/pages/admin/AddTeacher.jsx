@@ -601,7 +601,7 @@ const AddTeacher = () => {
     birthDate: null,
     // thesisYear: "",
     academicRank: "",
-    journals: [],
+    // journals: [],
     bookPublications: [],
     publications: [],
     publicationCertificate: "",
@@ -611,12 +611,12 @@ const AddTeacher = () => {
       nationalSeminar: [],
       internationalSeminar: [],
     },
-    researchLabsAndJournals: [],
-    scientificActivities: [],
+    // researchLabsAndJournals: [],
+    // scientificActivities: [],
     profileImage: "",
   });
 
-  const [journalInput, setJournalInput] = useState("");
+  // const [journalInput, setJournalInput] = useState("");
   const [bookInput, setBookInput] = useState("");
   const [pubInput, setPubInput] = useState({
     title: "",
@@ -625,9 +625,9 @@ const AddTeacher = () => {
   });
 
   // مدخلات مخابر البحث
-  const [labInput, setLabInput] = useState({ name: "", image: "" });
+  // const [labInput, setLabInput] = useState({ name: "", image: "" });
   // مدخلات النشاطات العلمية
-  const [activityInput, setActivityInput] = useState({ name: "", image: "" });
+  // const [activityInput, setActivityInput] = useState({ name: "", image: "" });
 
   const uploadImage = async (file) => {
     try {
@@ -664,9 +664,9 @@ const AddTeacher = () => {
           firstName: data.firstName || "",
           lastName: data.lastName || "",
           birthDate: data.birthDate ? new Date(data.birthDate) : null,
-          thesisYear: data.thesisYear ?? "",
+          // thesisYear: data.thesisYear ?? "",
           academicRank: data.academicRank || "",
-          journals: Array.isArray(data.journals) ? data.journals : [],
+          // journals: Array.isArray(data.journals) ? data.journals : [],
           bookPublications: Array.isArray(data.bookPublications)
             ? data.bookPublications
             : [],
@@ -682,12 +682,12 @@ const AddTeacher = () => {
             internationalSeminar:
               data.interventions?.internationalSeminar || [],
           },
-          researchLabsAndJournals: Array.isArray(data.researchLabsAndJournals)
-            ? data.researchLabsAndJournals
-            : [],
-          scientificActivities: Array.isArray(data.scientificActivities)
-            ? data.scientificActivities
-            : [],
+          // researchLabsAndJournals: Array.isArray(data.researchLabsAndJournals)
+          //   ? data.researchLabsAndJournals
+          //   : [],
+          // scientificActivities: Array.isArray(data.scientificActivities)
+          //   ? data.scientificActivities
+          //   : [],
           profileImage: data.profileImage || "",
         }));
       } catch (err) {
@@ -705,19 +705,19 @@ const AddTeacher = () => {
   };
 
   // --- journals ---
-  const addJournal = () => {
-    if (!journalInput.trim()) return;
-    setFormData((p) => ({
-      ...p,
-      journals: [...p.journals, journalInput.trim()],
-    }));
-    setJournalInput("");
-  };
-  const removeJournal = (idx) =>
-    setFormData((p) => ({
-      ...p,
-      journals: p.journals.filter((_, i) => i !== idx),
-    }));
+  // const addJournal = () => {
+  //   if (!journalInput.trim()) return;
+  //   setFormData((p) => ({
+  //     ...p,
+  //     journals: [...p.journals, journalInput.trim()],
+  //   }));
+  //   setJournalInput("");
+  // };
+  // const removeJournal = (idx) =>
+  //   setFormData((p) => ({
+  //     ...p,
+  //     journals: p.journals.filter((_, i) => i !== idx),
+  //   }));
 
   // --- bookPublications ---
   const addBook = () => {
@@ -793,48 +793,48 @@ const AddTeacher = () => {
   };
 
   // --- researchLabsAndJournals ---
-  const handleLabImage = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const url = await uploadImage(file);
-    if (url) setLabInput((p) => ({ ...p, image: url }));
-  };
-  const addLab = () => {
-    if (!labInput.name.trim()) return alert("أدخل اسم المخبر أو المجلة");
-    setFormData((p) => ({
-      ...p,
-      researchLabsAndJournals: [...p.researchLabsAndJournals, { ...labInput }],
-    }));
-    setLabInput({ name: "", image: "" });
-  };
-  const removeLab = (idx) =>
-    setFormData((p) => ({
-      ...p,
-      researchLabsAndJournals: p.researchLabsAndJournals.filter(
-        (_, i) => i !== idx,
-      ),
-    }));
+  // const handleLabImage = async (e) => {
+  //   const file = e.target.files[0];
+  //   if (!file) return;
+  //   const url = await uploadImage(file);
+  //   if (url) setLabInput((p) => ({ ...p, image: url }));
+  // };
+  // const addLab = () => {
+  //   if (!labInput.name.trim()) return alert("أدخل اسم المخبر أو المجلة");
+  //   setFormData((p) => ({
+  //     ...p,
+  //     researchLabsAndJournals: [...p.researchLabsAndJournals, { ...labInput }],
+  //   }));
+  //   setLabInput({ name: "", image: "" });
+  // };
+  // const removeLab = (idx) =>
+  //   setFormData((p) => ({
+  //     ...p,
+  //     researchLabsAndJournals: p.researchLabsAndJournals.filter(
+  //       (_, i) => i !== idx,
+  //     ),
+  //   }));
 
   // --- scientificActivities ---
-  const handleActivityImage = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const url = await uploadImage(file);
-    if (url) setActivityInput((p) => ({ ...p, image: url }));
-  };
-  const addActivity = () => {
-    if (!activityInput.name.trim()) return alert("أدخل اسم النشاط أو التظاهرة");
-    setFormData((p) => ({
-      ...p,
-      scientificActivities: [...p.scientificActivities, { ...activityInput }],
-    }));
-    setActivityInput({ name: "", image: "" });
-  };
-  const removeActivity = (idx) =>
-    setFormData((p) => ({
-      ...p,
-      scientificActivities: p.scientificActivities.filter((_, i) => i !== idx),
-    }));
+  // const handleActivityImage = async (e) => {
+  //   const file = e.target.files[0];
+  //   if (!file) return;
+  //   const url = await uploadImage(file);
+  //   if (url) setActivityInput((p) => ({ ...p, image: url }));
+  // };
+  // const addActivity = () => {
+  //   if (!activityInput.name.trim()) return alert("أدخل اسم النشاط أو التظاهرة");
+  //   setFormData((p) => ({
+  //     ...p,
+  //     scientificActivities: [...p.scientificActivities, { ...activityInput }],
+  //   }));
+  //   setActivityInput({ name: "", image: "" });
+  // };
+  // const removeActivity = (idx) =>
+  //   setFormData((p) => ({
+  //     ...p,
+  //     scientificActivities: p.scientificActivities.filter((_, i) => i !== idx),
+  //   }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -958,7 +958,7 @@ const AddTeacher = () => {
         </div>
 
         {/* روابط المجلات */}
-        <div className="space-y-2">
+        {/* <div className="space-y-2">
           <label className="font-medium">روابط المجلات</label>
           <div className="flex gap-2">
             <input
@@ -999,7 +999,7 @@ const AddTeacher = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* إصدارات/كتب */}
         <div className="space-y-2">
@@ -1153,7 +1153,7 @@ const AddTeacher = () => {
         </div>
 
         {/* مخابر البحث و المجلات العلمية */}
-        <div className="space-y-3">
+        {/* <div className="space-y-3">
           <label className="font-medium text-lg">
             مخابر البحث و المجلات العلمية
           </label>
@@ -1211,10 +1211,10 @@ const AddTeacher = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* النشاطات و التظاهرات العلمية */}
-        <div className="space-y-3">
+        {/* <div className="space-y-3">
           <label className="font-medium text-lg">
             النشاطات و التظاهرات العلمية
           </label>
@@ -1276,7 +1276,7 @@ const AddTeacher = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         <div className="pt-4">
           <button
@@ -1292,3 +1292,5 @@ const AddTeacher = () => {
 };
 
 export default AddTeacher;
+
+//
