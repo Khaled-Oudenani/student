@@ -126,10 +126,10 @@ const TeacherDetails = () => {
                   {teacher.academicRank}
                 </span>
               </div>
-              <div className="flex justify-between border-b pb-2">
+              {/* <div className="flex justify-between border-b pb-2">
                 <span className="text-gray-600">سنة مشروع الأطروحة:</span>
                 <span className="font-medium">{teacher.thesisYear}</span>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
