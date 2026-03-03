@@ -91,7 +91,7 @@ const teacherSchema = new mongoose.Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   birthDate: { type: Date, required: true },
-  thesisYear: { type: Number, required: true },
+  // thesisYear: { type: Number, required: true },
 
   // الرتبة العلمية
   academicRank: {

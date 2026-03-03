@@ -86,7 +86,6 @@ const Teacher = () => {
                     <th className="p-2 text-right font-semibold">#</th>
                     <th className="p-2 text-right font-semibold">الصورة</th>
                     <th className="p-2 text-right font-semibold">الاسم</th>
-                    <th className="p-2 text-right font-semibold">التخصص</th>
                     <th className="p-2 text-right font-semibold">الإجراءات</th>
                   </tr>
                 </thead>
@@ -115,11 +114,7 @@ const Teacher = () => {
                           {(t.firstName || "") + " " + (t.lastName || "")}
                         </span>
                       </td>
-                      <td className="p-2 text-right">
-                        <span className="inline-block bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 px-3 py-1 rounded-lg text-sm font-medium">
-                          {t.specialty || "-"}
-                        </span>
-                      </td>
+
                       <td className="p-2 text-right">
                         <button
                           onClick={() => navigate(`/teacher/${t._id}`)}

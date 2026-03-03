@@ -74,9 +74,9 @@ const TeacherDetails = () => {
                 >
                   {teacher.academicRank}
                 </span>
-                <span className="px-4 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium">
+                {/* <span className="px-4 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium">
                   سنة الأطروحة: {teacher.thesisYear}
-                </span>
+                </span> */}
               </div>
             </div>
           </div>
