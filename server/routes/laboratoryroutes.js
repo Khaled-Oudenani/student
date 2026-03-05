@@ -41,7 +41,7 @@ import {
   updateMakhabar,
   deleteMakhabar,
 } from "../controllers/laboratorycontroller.js";
-import { uploadLabFiles } from "../config/multerConfig.js";
+import { uploadLabFiles } from "../config/Multerconfig.js";
 
 const router = express.Router();
 
