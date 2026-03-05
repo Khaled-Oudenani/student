@@ -90,14 +90,13 @@ const scientificActivitySchema = new mongoose.Schema({
 const teacherSchema = new mongoose.Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  birthDate: { type: Date, required: true },
+  birthDate: { type: Date },
   // thesisYear: { type: Number, required: true },
 
   // الرتبة العلمية
   academicRank: {
     type: String,
     enum: ["محاضر أ", "محاضر ب", "أستاذ تعليم عالي"],
-    required: true,
   },
 
   // journals: [{ type: String }],

@@ -9,6 +9,7 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // اتصال بقاعدة البيانات
 mongoose
@@ -20,12 +21,17 @@ mongoose
 import studentRoutes from "./routes/studentRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import teacherRoutes from "./routes/teacherRoutes.js";
+import laboratoryRoutes from "./routes/laboratoryroutes.js";
+import journalRoutes from "./routes/journalroutes.js";
 app.use("/api/students", studentRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/teachers", teacherRoutes);
+app.use("/api/laboratories", laboratoryRoutes);
+app.use("/api/journals", journalRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
+app.get("/ping", (req, res) => res.send("pong"));
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
