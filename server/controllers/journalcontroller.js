@@ -5,25 +5,20 @@ import Journal from "../models/JournalModel.js";
 // ============================================================
 export const getAllMajallat = async (req, res) => {
   try {
-    const journal = await Journal.findOne();
-    if (!journal) return res.status(404).json({ message: "لا توجد مجلات بعد" });
-    res.status(200).json({ majallat: journal.majallat });
+    const majallat = await Journal.find();
+    res.status(200).json({ majallat });
   } catch (error) {
     res.status(500).json({ message: "خطأ في السيرفر", error: error.message });
   }
 };
 
 // ============================================================
-// GET - جلب مجلة واحدة بالـ ID
+// GET - جلب مجلة واحدة
 // ============================================================
 export const getMajalaById = async (req, res) => {
   try {
-    const journal = await Journal.findOne();
-    if (!journal) return res.status(404).json({ message: "لا توجد مجلات" });
-
-    const majala = journal.majallat.id(req.params.id);
+    const majala = await Journal.findById(req.params.id);
     if (!majala) return res.status(404).json({ message: "المجلة غير موجودة" });
-
     res.status(200).json({ majala });
   } catch (error) {
     res.status(500).json({ message: "خطأ في السيرفر", error: error.message });
@@ -35,88 +30,60 @@ export const getMajalaById = async (req, res) => {
 // ============================================================
 export const addMajala = async (req, res) => {
   try {
-    const { name, battaka_taqniya, aadat } = req.body;
-
+    const { name, aadat } = req.body;
     if (!name) return res.status(400).json({ message: "اسم المجلة مطلوب" });
 
-    const newMajala = {
-      name,
-      battaka_taqniya: {
-        text: battaka_taqniya?.text || null,
-      },
-      aadat: {
-        text: aadat?.text || null,
-      },
-    };
+    const files = req.files || {};
 
-    let journal = await Journal.findOne();
-    if (!journal) {
-      journal = new Journal({ majallat: [newMajala] });
-    } else {
-      journal.majallat.push(newMajala);
-    }
-
-    await journal.save();
-    res.status(201).json({
-      message: "تم إضافة المجلة بنجاح",
-      majala: journal.majallat[journal.majallat.length - 1],
-    });
-  } catch (error) {
-    res.status(500).json({ message: "خطأ في السيرفر", error: error.message });
-  }
-};
-
-// ============================================================
-// PUT - تعديل مجلة بالكامل
-// ============================================================
-export const updateMajala = async (req, res) => {
-  try {
-    const { name, battaka_taqniya, aadat } = req.body;
-
-    const journal = await Journal.findOne();
-    if (!journal) return res.status(404).json({ message: "لا توجد مجلات" });
-
-    const majala = journal.majallat.id(req.params.id);
-    if (!majala) return res.status(404).json({ message: "المجلة غير موجودة" });
-
-    if (name) majala.name = name;
-    if (battaka_taqniya?.text !== undefined)
-      majala.battaka_taqniya.text = battaka_taqniya.text;
-    if (aadat?.text !== undefined) majala.aadat.text = aadat.text;
-
-    await journal.save();
-    res.status(200).json({ message: "تم تحديث المجلة بنجاح", majala });
-  } catch (error) {
-    res.status(500).json({ message: "خطأ في السيرفر", error: error.message });
-  }
-};
-
-// ============================================================
-// PATCH - تعديل حقل معين فقط داخل المجلة
-// ============================================================
-export const patchMajala = async (req, res) => {
-  try {
-    const { field, text } = req.body;
-
-    const allowedFields = ["battaka_taqniya", "aadat"];
-    if (!allowedFields.includes(field)) {
-      return res.status(400).json({
-        message: `الحقل غير صالح. الحقول المسموحة: ${allowedFields.join(", ")}`,
+    // بناء مصفوفة battaka_taqniya
+    const battaka_taqniya = [];
+    const battakaTexts = [].concat(req.body["battaka_taqniya[text]"] || []);
+    const battakaFiles = files["battaka_file"] || [];
+    const count = Math.max(battakaTexts.length, battakaFiles.length);
+    for (let i = 0; i < count; i++) {
+      battaka_taqniya.push({
+        text: battakaTexts[i] || null,
+        file: battakaFiles[i]?.path || null,
       });
     }
 
-    const journal = await Journal.findOne();
-    if (!journal) return res.status(404).json({ message: "لا توجد مجلات" });
+    const majala = new Journal({ name, battaka_taqniya, aadat: aadat || null });
+    await majala.save();
+    res.status(201).json({ message: "تم إضافة المجلة بنجاح", majala });
+  } catch (error) {
+    res.status(500).json({ message: "خطأ في السيرفر", error: error.message });
+  }
+};
 
-    const majala = journal.majallat.id(req.params.id);
+// ============================================================
+// PUT - تعديل مجلة
+// ============================================================
+export const updateMajala = async (req, res) => {
+  try {
+    const { name, aadat } = req.body;
+    const files = req.files || {};
+
+    const majala = await Journal.findById(req.params.id);
     if (!majala) return res.status(404).json({ message: "المجلة غير موجودة" });
 
-    if (text !== undefined) majala[field].text = text;
+    if (name) majala.name = name;
+    if (aadat !== undefined) majala.aadat = aadat;
 
-    await journal.save();
-    res
-      .status(200)
-      .json({ message: `تم تحديث ${field} بنجاح`, data: majala[field] });
+    if (req.body["battaka_taqniya[text]"] || files["battaka_file"]) {
+      const texts = [].concat(req.body["battaka_taqniya[text]"] || []);
+      const filesList = files["battaka_file"] || [];
+      const count = Math.max(texts.length, filesList.length);
+      majala.battaka_taqniya = [];
+      for (let i = 0; i < count; i++) {
+        majala.battaka_taqniya.push({
+          text: texts[i] || null,
+          file: filesList[i]?.path || null,
+        });
+      }
+    }
+
+    await majala.save();
+    res.status(200).json({ message: "تم تحديث المجلة بنجاح", majala });
   } catch (error) {
     res.status(500).json({ message: "خطأ في السيرفر", error: error.message });
   }
@@ -127,15 +94,8 @@ export const patchMajala = async (req, res) => {
 // ============================================================
 export const deleteMajala = async (req, res) => {
   try {
-    const journal = await Journal.findOne();
-    if (!journal) return res.status(404).json({ message: "لا توجد مجلات" });
-
-    const majala = journal.majallat.id(req.params.id);
+    const majala = await Journal.findByIdAndDelete(req.params.id);
     if (!majala) return res.status(404).json({ message: "المجلة غير موجودة" });
-
-    majala.deleteOne();
-    await journal.save();
-
     res.status(200).json({ message: "تم حذف المجلة بنجاح" });
   } catch (error) {
     res.status(500).json({ message: "خطأ في السيرفر", error: error.message });

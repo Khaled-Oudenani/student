@@ -13,6 +13,10 @@ import AddStudent from "./pages/admin/AddStudent";
 import ManageStudents from "./pages/admin/ManageStudents";
 import AddTeacher from "./pages/admin/AddTeacher";
 import ManageTeachers from "./pages/admin/ManageTeachers";
+import AddLaboratory from "./pages/admin/AddLaboratory";
+import AddJournal from "./pages/admin/AddJournal";
+import ManageLabsAndJrns from "./pages/admin/ManageLabs&Jrns";
+
 import ProtectedRoute from "./componentes/ProtectedRoute";
 import { Routes, Route } from "react-router-dom";
 import { Navigate } from "react-router-dom";
@@ -43,8 +47,11 @@ const App = () => {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="manage" element={<ManageStudents />} />
           <Route path="manage-teachers" element={<ManageTeachers />} />
+          <Route path="manage-labs-jrns" element={<ManageLabsAndJrns />} />
           <Route path="add" element={<AddStudent />} />
           <Route path="add-teacher" element={<AddTeacher />} />
+          <Route path="add-laboratory" element={<AddLaboratory />} />
+          <Route path="add-journal" element={<AddJournal />} />
           <Route path="update-student/:id" element={<AddStudent />} />
           <Route path="update-teacher/:id" element={<AddTeacher />} />
           <Route index element={<Navigate to="dashboard" />} />
