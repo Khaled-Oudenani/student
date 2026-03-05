@@ -5,7 +5,7 @@ import {
   addMajala,
   updateMajala,
   deleteMajala,
-} from "../controllers/Journalcontroller.js";
+} from "../controllers/journalcontroller.js";
 import { uploadLabFiles } from "../config/Multerconfig.js";
 
 const router = express.Router();
