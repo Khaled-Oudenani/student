@@ -6,6 +6,7 @@ import Home from "./pages/Home.jsx";
 import Teacher from "./pages/Teacher.jsx";
 import StudentDetails from "./pages/StudentDetails.jsx";
 import TeacherDetails from "./pages/TeacherDetails.jsx";
+import LabsAndJrns from "./pages/Labs&Jrns.jsx";
 import Login from "./pages/admin/Login";
 import Layout from "./pages/admin/Layout";
 import Dashboard from "./pages/admin/Dashboard";
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/teacher" element={<Teacher />} />
         <Route path="/student/:id" element={<StudentDetails />} />
         <Route path="/teacher/:id" element={<TeacherDetails />} />
+        <Route path="/labs-jrns" element={<LabsAndJrns />} />
 
         <Route
           path="/admin/login"
