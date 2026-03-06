@@ -98,10 +98,7 @@ const cards = [
 
 const Home1 = () => {
   return (
-    <div
-      className="relative w-screen h-[calc(100vh-3rem)] overflow-hidden"
-      dir="rtl"
-    >
+    <div className="relative w-screen h-auto overflow-hidden" dir="rtl">
       {/* Background */}
       {/* <img
         src={backgroundImage}
