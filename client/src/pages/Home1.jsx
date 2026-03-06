@@ -90,7 +90,7 @@ const cards = [
     color: "from-purple-500 to-purple-600",
     glow: "group-hover:shadow-purple-500/30",
     border: "hover:border-purple-300",
-    label: "مخابر البحث",
+    label: "مخابر البحث و المجلات العلمية",
     sub: "Research Labs & Journals",
     bg: "group-hover:bg-purple-50",
   },
