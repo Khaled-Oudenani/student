@@ -52,7 +52,7 @@
 //           <p className="text-xs text-gray-400 uppercase tracking-widest px-2 mt-2 mb-1">
 //             الأعضاء
 //           </p>
-//           {navLinks.slice(0, 4).map((link) => (
+//           {navLinks.slice(0, 5).map((link) => (
 //             <Link
 //               key={link.to}
 //               to={link.to}
@@ -68,7 +68,7 @@
 //           <p className="text-xs text-gray-400 uppercase tracking-widest px-2 mt-4 mb-1">
 //             البحث العلمي
 //           </p>
-//           {navLinks.slice(4).map((link) => (
+//           {navLinks.slice(5).map((link) => (
 //             <Link
 //               key={link.to}
 //               to={link.to}
@@ -115,6 +115,7 @@
 // };
 
 // export default Layout;
+
 import React, { useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -134,12 +135,21 @@ const Layout = () => {
     { to: "/admin/manage-teachers", icon: "👩‍🏫", label: "إدارة الأساتذة" },
     { to: "/admin/add", icon: "➕", label: "إضافة طالب" },
     { to: "/admin/add-teacher", icon: "➕", label: "إضافة أستاذ" },
+  ];
+
+  const researchLinks = [
     { to: "/admin/add-laboratory", icon: "🔬", label: "إضافة مخبر" },
     { to: "/admin/add-journal", icon: "📰", label: "إضافة مجلة" },
     {
       to: "/admin/manage-labs-jrns",
       icon: "📁",
       label: "إدارة المخابر والمجلات",
+    },
+    { to: "/admin/add-sientmani", icon: "🧪", label: "إضافة تظاهرات علمية" },
+    {
+      to: "/admin/manage-sientmani",
+      icon: "🗂️",
+      label: "إدارة التظاهرات العلمية",
     },
   ];
 
@@ -165,11 +175,11 @@ const Layout = () => {
         </div>
 
         <nav className="flex flex-col gap-1 mt-4">
-          {/* -- الطلبة والأساتذة -- */}
+          {/* -- الأعضاء -- */}
           <p className="text-xs text-gray-400 uppercase tracking-widest px-2 mt-2 mb-1">
             الأعضاء
           </p>
-          {navLinks.slice(0, 5).map((link) => (
+          {navLinks.map((link) => (
             <Link
               key={link.to}
               to={link.to}
@@ -181,11 +191,11 @@ const Layout = () => {
             </Link>
           ))}
 
-          {/* -- المخابر والمجلات -- */}
+          {/* -- البحث العلمي -- */}
           <p className="text-xs text-gray-400 uppercase tracking-widest px-2 mt-4 mb-1">
             البحث العلمي
           </p>
-          {navLinks.slice(5).map((link) => (
+          {researchLinks.map((link) => (
             <Link
               key={link.to}
               to={link.to}

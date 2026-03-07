@@ -23,6 +23,9 @@ import adminRoutes from "./routes/adminRoutes.js";
 import teacherRoutes from "./routes/teacherRoutes.js";
 import laboratoryRoutes from "./routes/laboratoryroutes.js";
 import journalRoutes from "./routes/journalroutes.js";
+import scientmaniRoutes from "./routes/scientmaniRoutes.js";
+
+app.use("/api/scientmani", scientmaniRoutes);
 app.use("/api/students", studentRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/teachers", teacherRoutes);
