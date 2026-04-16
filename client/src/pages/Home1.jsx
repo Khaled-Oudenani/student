@@ -173,12 +173,7 @@
 
 import React from "react";
 import backgroundImage from "../assets/image1.jpg";
-import {
-  BookOpen,
-  GraduationCap,
-  FlaskConical,
-  Microscope,
-} from "lucide-react";
+import { BookOpen, GraduationCap, Newspaper, Monitor } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const cards = [
@@ -204,7 +199,7 @@ const cards = [
   },
   {
     to: "/labs-jrns",
-    icon: FlaskConical,
+    icon: Newspaper,
     color: "from-purple-500 to-purple-600",
     glow: "group-hover:shadow-purple-500/30",
     border: "hover:border-purple-300",
@@ -214,7 +209,7 @@ const cards = [
   },
   {
     to: "/sientmani",
-    icon: Microscope,
+    icon: Monitor,
     color: "from-amber-500 to-amber-600",
     glow: "group-hover:shadow-amber-500/30",
     border: "hover:border-amber-300",

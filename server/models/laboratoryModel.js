@@ -1,36 +1,16 @@
 // import mongoose from "mongoose";
 
-// const BattakaSchema = new mongoose.Schema({
+// const FieldSchema = new mongoose.Schema({
 //   text: { type: String, default: null },
 //   file: { type: String, default: null },
 // });
-
-// const HassilaSchema = new mongoose.Schema({
-//   text: { type: String, default: null },
-//   file: { type: String, default: null },
-// });
-
-// const NashatetSchema = new mongoose.Schema({
-//   text: { type: String, default: null },
-//   file: { type: String, default: null },
-// });
-
-// const MakhabarSchema = new mongoose.Schema(
-//   {
-//     name: { type: String, required: true },
-//     battaka_taqniya: { type: BattakaSchema, default: () => ({}) },
-//     hassila: { type: HassilaSchema, default: () => ({}) },
-//     nashatat: { type: NashatetSchema, default: () => ({}) },
-//   },
-//   { timestamps: true },
-// );
 
 // const LaboratorySchema = new mongoose.Schema(
 //   {
-//     makhaber: {
-//       type: [MakhabarSchema],
-//       default: [],
-//     },
+//     name: { type: String, required: true },
+//     battaka_taqniya: { type: [FieldSchema], default: [] },
+//     hassila: { type: [FieldSchema], default: [] },
+//     nashatat: { type: [FieldSchema], default: [] },
 //   },
 //   { timestamps: true },
 // );
@@ -39,7 +19,7 @@
 
 // export default Laboratory;
 
-// ///////////
+//
 
 import mongoose from "mongoose";
 
@@ -54,6 +34,9 @@ const LaboratorySchema = new mongoose.Schema(
     battaka_taqniya: { type: [FieldSchema], default: [] },
     hassila: { type: [FieldSchema], default: [] },
     nashatat: { type: [FieldSchema], default: [] },
+    taareef: { type: String, default: null }, // نص واحد فقط
+    mokawinat: { type: [String], default: [] }, // نصوص متعددة
+    firaq: { type: [String], default: [] }, // نصوص متعددة
   },
   { timestamps: true },
 );

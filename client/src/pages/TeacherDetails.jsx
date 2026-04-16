@@ -378,8 +378,8 @@ import {
   Award,
   FileText,
   ImageIcon,
-  FlaskConical,
-  Microscope,
+  Newspaper,
+  Monitor,
 } from "lucide-react";
 
 const TeacherDetails = () => {
@@ -568,7 +568,7 @@ const TeacherDetails = () => {
         {teacher.researchLabsAndJournals?.length > 0 && (
           <div className="bg-white rounded-lg shadow p-6 mb-6">
             <div className="flex items-center gap-2 mb-6">
-              <FlaskConical className="text-emerald-600" size={24} />
+              <Newspaper className="text-emerald-600" size={24} />
               <h2 className="text-xl font-bold text-gray-800">
                 مخابر البحث و المجلات العلمية
               </h2>
@@ -605,7 +605,7 @@ const TeacherDetails = () => {
         {teacher.scientificActivities?.length > 0 && (
           <div className="bg-white rounded-lg shadow p-6 mb-6">
             <div className="flex items-center gap-2 mb-6">
-              <Microscope className="text-emerald-600" size={24} />
+              <Monitor className="text-emerald-600" size={24} />
               <h2 className="text-xl font-bold text-gray-800">
                 النشاطات و التظاهرات العلمية
               </h2>
