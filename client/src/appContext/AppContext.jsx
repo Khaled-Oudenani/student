@@ -75,7 +75,7 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     fetchStudents();
     fetchTeachers();
-  }, []); // ← مهم جدا
+  }, []);
 
   const value = {
     students,
